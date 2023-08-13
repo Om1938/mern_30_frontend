@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import Message from "./components/Message";
+import Buttton from "./components/Button";
+import Input from "./components/Input";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -13,7 +15,21 @@ function App() {
     getData();
   }, []);
 
-  return <h1>{message}</h1>;
+  return (
+    <>
+      <Message text={message} />
+      <div>
+        <Input value={"Hello"} />
+        <Buttton
+          onClick={() => {
+            alert("Button Clicked");
+          }}
+        >
+          Click me
+        </Buttton>
+      </div>
+    </>
+  );
 }
 
 export default App;

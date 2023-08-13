@@ -1,23 +1,14 @@
-import { useEffect, useState } from "react";
 import Message from "./components/Message";
 import Buttton from "./components/Button";
 import Input from "./components/Input";
+import { useGetMessageQuery } from "./store/message/api";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    const getData = async () => {
-      const response = await fetch("http://localhost:3000");
-      const data = await response.text();
-      setMessage(data);
-    };
-    getData();
-  }, []);
+  const { data: message } = useGetMessageQuery(undefined);
 
   return (
     <>
-      <Message text={message} />
+      {message && <Message text={message} />}
       <div>
         <Input value={"Hello"} />
         <Buttton
